@@ -18,25 +18,14 @@ import {
   FiUser,
   FiLogOut,
   FiHome,
-  FiEdit
+  FiEdit,
+  FiMail
 } from "react-icons/fi";
 import Image from "next/image";
 
-// City options for the dropdown
-const CITIES = [
-  "Ahemdabad", 
-  "Delhi", 
-  "Mumbai", 
-  "Bengaluru", 
-  "Hyderabad", 
-  "Kolkata"
-];
-
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isCityDropdownOpen, setIsCityDropdownOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
-  const [selectedCity, setSelectedCity] = useState("Select City");
   const [scrolled, setScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
@@ -46,12 +35,6 @@ const Navbar = () => {
   // After mounting, we can safely show the UI that depends on the theme
   useEffect(() => {
     setMounted(true);
-    
-    // Try to get city from localStorage
-    const savedCity = localStorage.getItem("selectedCity");
-    if (savedCity) {
-      setSelectedCity(savedCity);
-    }
   }, []);
 
   useEffect(() => {
@@ -73,30 +56,24 @@ const Navbar = () => {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
     // Close other menus
-    if (isCityDropdownOpen) setIsCityDropdownOpen(false);
     if (isUserMenuOpen) setIsUserMenuOpen(false);
   };
 
-
-
   const toggleUserMenu = () => {
     setIsUserMenuOpen(!isUserMenuOpen);
-    // Close other menus
-    if (isCityDropdownOpen) setIsCityDropdownOpen(false);
   };
 
-  const selectCity = (city: string) => {
-    setSelectedCity(city);
-    setIsCityDropdownOpen(false);
-    setIsMenuOpen(false); // Close mobile menu when city is selected
-    
-    // Save to localStorage for other components to access
-    localStorage.setItem("selectedCity", city);
-    
-    // Dispatch custom event for components listening for city changes
-    window.dispatchEvent(new CustomEvent("cityChanged", { 
-      detail: { city }
-    }));
+  // Smooth scroll to contact section
+  const scrollToContact = () => {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+    // Close mobile menu if open
+    setIsMenuOpen(false);
   };
 
   const toggleTheme = () => {
@@ -183,6 +160,15 @@ const Navbar = () => {
             <NavItem href="/about" icon={<FiInfo className="mr-1" />}>
               About Us
             </NavItem>
+            <motion.button
+              onClick={scrollToContact}
+              className="group flex items-center rounded-md px-3 py-2 text-gray-700 dark:text-gray-200 hover:bg-cyan-100 dark:hover:bg-cyan-900/30 hover:text-cyan-700 dark:hover:text-cyan-300 transition-all duration-200"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <FiMail className="mr-1" />
+              Contact
+            </motion.button>
 
             {/* City Selection Dropdown */}
             {/* <div className="relative">
@@ -427,15 +413,26 @@ const Navbar = () => {
             className="md:hidden bg-white dark:bg-zinc-900 shadow-lg"
           >
             <div className="px-2 pt-2 pb-3 space-y-1">
-              <MobileNavItem href="/events" icon={<FiCalendar className="mr-2" />}>
+              <MobileNavItem href="/events" icon={<FiCalendar className="mr-2" />} onClick={() => setIsMenuOpen(false)}>
                 Events
               </MobileNavItem>
-              <MobileNavItem href="/ngos" icon={<FiUsers className="mr-2" />}>
+              <MobileNavItem href="/ngos" icon={<FiUsers className="mr-2" />} onClick={() => setIsMenuOpen(false)}>
                 NGOs
               </MobileNavItem>
-              <MobileNavItem href="/about" icon={<FiInfo className="mr-2" />}>
+              <MobileNavItem href="/about" icon={<FiInfo className="mr-2" />} onClick={() => setIsMenuOpen(false)}>
                 About Us
               </MobileNavItem>
+
+              {/* Contact Button for Mobile */}
+              <motion.button
+                onClick={scrollToContact}
+                className="flex items-center w-full px-3 py-3 rounded-md text-gray-700 dark:text-gray-200 font-medium hover:bg-gray-100 dark:hover:bg-gray-800"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <FiMail className="mr-2" />
+                Contact
+              </motion.button>
 
               {/* Theme Toggle in Mobile Menu */}
               <motion.button
@@ -456,26 +453,6 @@ const Navbar = () => {
                   </>
                 )}
               </motion.button>
-
-              {/* Mobile City Selection */}
-              <div className="py-2">
-                <p className="px-3 text-sm font-medium text-gray-400">Select City</p>
-                <div className="mt-1 max-h-40 overflow-y-auto">
-                  {CITIES.map((city) => (
-                    <button
-                      key={city}
-                      className={`w-full text-left block px-3 py-2 text-base font-medium rounded-md ${
-                        selectedCity === city
-                          ? "bg-cyan-100 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-300"
-                          : "text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
-                      }`}
-                      onClick={() => selectCity(city)}
-                    >
-                      {city}
-                    </button>
-                  ))}
-                </div>
-              </div>
 
               {/* Mobile Login/Signup Button */}
               {!user && (
@@ -524,9 +501,14 @@ const NavItem: React.FC<NavItemProps> = ({ href, children, icon }) => {
 };
 
 // Mobile Navigation Item Component
-const MobileNavItem: React.FC<{ href: string; children: React.ReactNode; icon: React.ReactNode }> = ({ href, children, icon }) => {
+const MobileNavItem: React.FC<{ 
+  href: string; 
+  children: React.ReactNode; 
+  icon: React.ReactNode; 
+  onClick?: () => void;
+}> = ({ href, children, icon, onClick }) => {
   return (
-    <Link href={href} className="block">
+    <Link href={href} className="block" onClick={onClick}>
       <motion.div
         className="flex items-center px-3 py-3 rounded-md text-gray-700 dark:text-gray-200 font-medium hover:bg-gray-100 dark:hover:bg-gray-800"
         whileHover={{ scale: 1.02 }}

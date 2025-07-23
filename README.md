@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌟 VolunteerVerse - Volunteers Coordination Platform
 
-## Getting Started
+<div align="center">
+  <img src="public/volunteer-verse.png" alt="VolunteerVerse Logo" width="200" height="200">
+  
+  **Connecting hearts, Creating impact, Building communities**
+  
+  A modern platform that bridges the gap between passionate volunteers and meaningful opportunities.
 
-First, run the development server:
+  [![Live Demo](https://img.shields.io/badge/🌐%20Live%20Demo-Visit%20Site-blue?style=for-the-badge)](https://volunteers-verse.vercel.app/)
+  [![GitHub](https://img.shields.io/badge/📚%20GitHub-View%20Code-black?style=for-the-badge)](https://github.com/Aryan02004/VolunteerVerse)
+</div>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ✨ Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+🎯 **Smart Matching** - Find volunteer opportunities that match your interests and skills  
+🌍 **Community Impact** - Connect with NGOs and make a real difference  
+📊 **Track Progress** - Monitor your volunteering History
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+🤝 **User-Friendly** - Intuitive interface designed for seamless experience  
+🔐 **Secure Platform** - Built with modern authentication and security practices
 
-## Learn More
+## 🚀 Quick Start
 
-To learn more about Next.js, take a look at the following resources:
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Installation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Aryan02004/VolunteerVerse.git
+   cd VolunteerVerse
+   ```
 
-## Deploy on Vercel
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. **Start development server**
+   ```bash
+   npm run dev
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4. **Open your browser**
+   Navigate to [http://localhost:3000](http://localhost:3000)
+
+## 🛠️ Tech Stack
+
+- **Frontend:** Next.js 15, React 19, TypeScript
+- **Styling:** Tailwind CSS, Shadcn/ui
+- **Database:** Supabase
+- **Authentication:** Supabase Auth
+- **Deployment:** Vercel
+
+## 📱 Screenshots
+
+<div align="center">
+  <img src="public/carousel/carousel-1.png" alt="Homepage" width="300">
+</div>
+
+## 🤝 Contributing
+
+We welcome contributions! Please feel free to submit a Pull Request.
+
+---
+
+<div align="center">
+  <p>Made with ❤️ by <a href="https://github.com/Aryan02004">Aaryan</a></p>
+  <p>⭐ Star this repo if you found it helpful!</p>
+</div>

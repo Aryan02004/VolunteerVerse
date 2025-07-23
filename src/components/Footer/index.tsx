@@ -81,8 +81,8 @@ const Footer = () => {
               <FooterLink href="/events">Upcoming Events</FooterLink>
               <FooterLink href="/ngos">Partner NGOs</FooterLink>
               <FooterLink href="/about">About Us</FooterLink>
-              <FooterLink href="/contact">Contact</FooterLink>
-              <FooterLink href="/faq">FAQs</FooterLink>
+              <FooterLink href="/">Contact</FooterLink>
+              <FooterLink href="/">FAQs</FooterLink>
             </ul>
           </div>
 
@@ -140,7 +140,7 @@ const Footer = () => {
       </div>
 
       {/* Contact Info Bar */}
-      <div className="border-t border-gray-200 dark:border-gray-800 mt-12">
+      <div id="contact" className="border-t border-gray-200 dark:border-gray-800 mt-12">
         <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <ContactItem icon={<FiPhone />} text="+91 88888 99999" />
@@ -157,13 +157,13 @@ const Footer = () => {
             <span>© {new Date().getFullYear()} VolunteerVerse. All rights reserved.</span>
           </div>
           <div className="flex flex-wrap justify-center gap-4 md:gap-6">
-            <Link href="/privacy" className="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
+            <Link href="/" className="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
               Privacy Policy
             </Link>
-            <Link href="/terms" className="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
+            <Link href="/" className="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
               Terms of Service
             </Link>
-            <Link href="/cookies" className="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
+            <Link href="/" className="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
               Cookie Policy
             </Link>
             <div className="flex items-center">
