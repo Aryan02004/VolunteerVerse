@@ -531,7 +531,7 @@ const Register = () => {
               />
               <label htmlFor="agree-terms" className="ml-2 block text-sm text-gray-700 dark:text-gray-300">
                 I agree to the{' '}
-                <Link href="/terms" className="text-cyan-600 hover:text-cyan-500">
+                <Link href="/about" className="text-cyan-600 hover:text-cyan-500">
                   Terms and Conditions
                 </Link>
               </label>
